@@ -145,7 +145,9 @@ h1, h2 { font-weight: 440; letter-spacing: -.06em; }
 .hero .hero-buttons { justify-content: flex-start; }
 .hero-scroll { left: auto; right: 24px; translate: none; }
 .audiences { position: relative; background: radial-gradient(ellipse at 88% 0%, #e3e3e3 0%, transparent 46%); }
-.audience-copy { position: relative; width: 91%; padding: 18px clamp(14px, 2vw, 30px) 12px; margin-top: -26px; background: var(--paper); border-radius: 0 8px 0 0; }
+.audience-copy { position: relative; width: 91%; padding: 18px clamp(14px, 2vw, 30px) 12px; margin-top: -26px; background: var(--dark); color: #fff; border-radius: 20px; }
+.audience-copy p { color: #dedede; }
+.audience-copy .text-link { color: #fff; }
 .portfolio-section { background: #e3e3e3; }
 .portfolio-section .portfolio-grid { align-items: start; }
 .page-hero.has-image .page-hero-grid { gap: clamp(25px, 6vw, 92px); }
