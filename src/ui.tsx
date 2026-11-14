@@ -30,9 +30,9 @@ export function Header({ path, onLead }: { path: string; onLead: OpenLead }) {
       <Logo />
       <nav id="site-nav" aria-label="Основная навигация" className={menu ? 'nav open' : 'nav'}>
         {nav.map(([href, label]) => <a key={href} aria-current={path === href || (href !== '/' && path.startsWith(href+'/')) ? 'page' : undefined} href={sitePath(href)}>{label}</a>)}
-        <button className="mobile-nav-cta" onClick={() => { setMenu(false); onLead() }}>Рассчитать заказ <ArrowUpRight size={17} /></button>
+        <button className="mobile-nav-cta" onClick={() => { setMenu(false); onLead() }}>Рассчитать стоимость <ArrowUpRight size={17} /></button>
       </nav>
-      <div className="nav-cta"><Button style="nav-button" onClick={() => onLead()}>Рассчитать заказ</Button></div>
+      <div className="nav-cta"><Button style="nav-button" onClick={() => onLead()}>Рассчитать стоимость</Button></div>
       <button ref={mobileMenu} type="button" className="menu-button" aria-label={menu ? 'Закрыть меню' : 'Открыть меню'} aria-expanded={menu} aria-controls="site-nav" onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</button>
     </div>
   </header>
@@ -45,7 +45,7 @@ export function Photo({ name, className = '', priority = false, children }: { na
   </figure>
 }
 
-export function SectionHeading({ title, description }: { title: string; description?: string; eyebrow?: string }) {
+export function SectionHeading({ title, description }: { title: ReactNode; description?: string; eyebrow?: string }) {
   return <div className="section-heading">
     <div className="section-heading-row"><h2>{title}</h2>{description && <p>{description}</p>}</div>
   </div>
@@ -55,11 +55,11 @@ export function Breadcrumbs({ items }: { items: { href?: string; label: string }
   return <nav className="breadcrumbs" aria-label="Хлебные крошки"><a href={sitePath('/')}>Главная</a>{items.map(({ href, label }) => <span key={label}> / {href ? <a href={sitePath(href)}>{label}</a> : <span aria-current="page">{label}</span>}</span>)}</nav>
 }
 
-export function ServiceCard({ path, title, description, image }: { path: string; title: string; description: string; image: string }) {
-  return <a href={sitePath(path)} className="service-card group">
+export function ServiceCard({ path, title, description, image, onCalculate }: { path: string; title: string; description: string; image: string; onCalculate: () => void }) {
+  return <article className="service-card"><a href={sitePath(path)} className="service-card-link group">
     <Photo name={image} />
     <div className="service-caption"><div><h3>{title}</h3><p>{description}</p></div><span className="round-icon"><ArrowUpRight size={19} aria-hidden="true" /></span></div>
-  </a>
+  </a><Button onClick={onCalculate}>Рассчитать стоимость</Button></article>
 }
 
 export function PortfolioCard({ project }: { project: typeof gallery[number] }) {
@@ -89,13 +89,13 @@ export function Process({ title = 'Понятный процесс. Продум
 }
 
 export function FAQAccordion() {
-  return <section className="section"><div className="container faq-grid"><SectionHeading eyebrow="Частые вопросы" title="Отвечаем на важные вопросы" /><div className="faq-list">{faq.map(([question, answer]) => <details name="faq" key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
+  return <section className="section"><div className="container faq-grid"><SectionHeading eyebrow="Частые вопросы" title="Частые вопросы" /><div className="faq-list">{faq.map(([question, answer]) => <details name="faq" key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
 }
 
 export function ContactSection({ onLead }: { onLead: OpenLead }) {
   const c = site.contacts
   return <section className="section contact-section"><div className="container contact-grid">
-    <div><p className="eyebrow">Контакты</p><h2>Давайте создавать вместе</h2></div>
+    <div><p className="eyebrow">Контакты</p><h2>Свяжитесь с нами</h2></div>
     <div className="contact-copy"><p><strong>ЦЕХЪ · {c.city}</strong><br />{c.address || 'Швейное производство'}</p>
     {c.hours && <p>{c.hours}</p>}{c.phone && <a href={'tel:'+c.phone}>{c.phone}</a>}{c.email && <a href={'mailto:'+c.email}>{c.email}</a>}{c.telegram && <a href={c.telegram}>Telegram</a>}
     {c.map && <Button href={c.map} style="outline">Построить маршрут</Button>}
@@ -104,7 +104,7 @@ export function ContactSection({ onLead }: { onLead: OpenLead }) {
 }
 
 export function FinalCTA({ onLead, type, label = 'Обсудить проект' }: { onLead: OpenLead; type?: number; label?: string }) {
-  return <section className="final-cta"><div className="container final-grid"><h2>Хорошая идея заслуживает точного исполнения.</h2><div><p>Расскажите о своём проекте. Мы поможем определить, как воплотить его в готовое изделие.</p><Button style="light" onClick={() => onLead(type)}>{label}</Button><a className="text-link" href={sitePath('/works')}>Посмотреть наши работы <ArrowRight size={17} /></a></div></div></section>
+  return <section className="final-cta"><div className="container final-grid"><h2>Обсудим ваш заказ</h2><div><p>Расскажите о своём проекте. Мы поможем определить, как воплотить его в готовое изделие.</p><Button style="light" onClick={() => onLead(type)}>{label}</Button><a className="text-link" href={sitePath('/works')}>Посмотреть наши работы <ArrowRight size={17} /></a></div></div></section>
 }
 
 export function Footer() {

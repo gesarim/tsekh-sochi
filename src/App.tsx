@@ -35,6 +35,7 @@ export function metadata(path: string) {
 }
 
 export function App({ path }: { path: string }) {
+  const [showQuote, setShowQuote] = useState(false)
   const [lead, setLead] = useState<{ type?: number } | null>(null)
   const onLead = (type?: number) => setLead({ type })
   const service = services.find(s => '/services/'+s.id === path)
@@ -69,11 +70,21 @@ export function App({ path }: { path: string }) {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const intro = document.querySelector('.hero-stage, .page-hero')
+    if (!intro) return
+    const observer = new IntersectionObserver(([entry]) => {
+      setShowQuote(!entry.isIntersecting && entry.boundingClientRect.bottom <= 0)
+    })
+    observer.observe(intro)
+    return () => observer.disconnect()
+  }, [path])
+
   return <><a className="skip" href="#main">К содержанию</a>
     <Header path={path} onLead={() => onLead(pageType)} />
     <main id="main">{page}</main>
     <Footer />
-    <div className="mobile-fixed"><button type="button" onClick={() => onLead(pageType)}>Рассчитать заказ <ArrowUpRight size={18} /></button></div>
+    {showQuote && !lead && <aside className="quote-dock" aria-label="Расчёт заказа"><button type="button" onClick={() => onLead(pageType)}>Рассчитать стоимость <ArrowUpRight size={18} aria-hidden="true" /></button></aside>}
     {lead && <Modal onClose={() => setLead(null)}><LeadForm type={lead.type} /></Modal>}
   </>
 }

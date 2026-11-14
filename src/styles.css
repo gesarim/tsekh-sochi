@@ -22,7 +22,7 @@ p{max-width:68ch}
 .button svg,.text-link svg{flex:none}
 .button::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateY(102%);transition:transform .32s cubic-bezier(.2,.6,.3,1);background:var(--hover-fill)}
 .button:hover::before{transform:translateY(0)}
-.button.primary{color:#fff;background:var(--rust);--hover-fill:#7c3222}
+.button.primary{color:#fff;background:var(--rust);--hover-fill:#414141}
 .button.outline{border-color:#bdbdbd;--hover-fill:var(--ink)}
 .button.outline:hover{color:var(--paper);border-color:var(--ink)}
 .button.light{color:var(--dark);background:var(--paper);--hover-fill:var(--sand)}
@@ -188,7 +188,7 @@ p{max-width:68ch}
 .lead-actions .button{margin-left:auto}
 .back-button{display:flex;align-items:center;gap:6px;font-size:12px;min-height:42px}
 .helper,.form-message{font-size:12px;color:var(--muted)}
-.form-message{color:#8d3221}
+.form-message{color:#444444}
 .modal{margin:auto;width:min(550px,calc(100% - 22px));max-height:calc(100dvh - 26px);border:none;border-radius:16px;background:transparent;color:var(--ink)}
 .modal::backdrop{background:#101010ba}
 .modal-body{position:relative}
