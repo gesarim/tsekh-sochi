@@ -14,7 +14,7 @@ export function Logo() {
   return <a className="wordmark" href={sitePath('/')} aria-label="ЦЕХЪ — главная">ЦЕХЪ</a>
 }
 
-export function Header({ path, onLead }: { path: string; onLead: OpenLead }) {
+export function Header({ path, pastIntro, onLead }: { path: string; pastIntro: boolean; onLead: OpenLead }) {
   const [menu, setMenu] = useState(false)
   const mobileMenu = useRef<HTMLButtonElement>(null)
   useEffect(() => {
@@ -25,7 +25,7 @@ export function Header({ path, onLead }: { path: string; onLead: OpenLead }) {
     document.addEventListener('keydown', close)
     return () => document.removeEventListener('keydown', close)
   }, [menu])
-  return <header className={path === '/' ? 'header header-over-hero' : 'header'}>
+  return <header className={path === '/' ? (pastIntro ? 'header header-over-hero header-glass' : 'header header-over-hero') : 'header'}>
     <div className="container nav-shell">
       <Logo />
       <nav id="site-nav" aria-label="Основная навигация" className={menu ? 'nav open' : 'nav'}>

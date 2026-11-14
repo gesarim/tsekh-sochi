@@ -81,7 +81,7 @@ export function App({ path }: { path: string }) {
   }, [path])
 
   return <><a className="skip" href="#main">К содержанию</a>
-    <Header path={path} onLead={() => onLead(pageType)} />
+    <Header path={path} pastIntro={showQuote} onLead={() => onLead(pageType)} />
     <main id="main">{page}</main>
     <Footer />
     {showQuote && !lead && <aside className="quote-dock" aria-label="Расчёт заказа"><button type="button" onClick={() => onLead(pageType)}>Рассчитать стоимость <ArrowUpRight size={18} aria-hidden="true" /></button></aside>}
