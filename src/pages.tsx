@@ -46,9 +46,9 @@ export function Home({ onLead }: { onLead: OpenLead }) {
         <div className="hero-frame">
           <Photo name="hero" className="hero-photo" priority />
           <div className="container hero-copy">
-            <p className="eyebrow hero-eyebrow">Швейное производство · Сочи</p>
-            <h1><span>Сложные идеи.</span><span>Точное исполнение.</span></h1>
-            <p className="hero-description">Шьём одежду для брендов, бизнеса и частных клиентов.</p>
+            <p className="eyebrow hero-eyebrow">ЦЕХЪ · Сочи</p>
+            <h1><span>Пошив одежды</span><span>и сложных изделий</span></h1>
+            <p className="hero-description">Индивидуальный пошив и производство для брендов и бизнеса.</p>
             <div className="hero-buttons"><Button onClick={() => onLead()}>Рассчитать стоимость</Button><Button href="/works" style="outline">Посмотреть работы</Button></div>
           </div>
           <a className="hero-scroll" href="#audiences" aria-label="Перейти к направлениям"><ArrowDown size={20} aria-hidden="true" /></a>

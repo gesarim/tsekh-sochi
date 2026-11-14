@@ -28,11 +28,13 @@ p{max-width:68ch}
   inset: -65% -42% -90%;
   border-radius: 58% 42% 0 0 / 48% 31% 0 0;
   background: var(--hover-fill);
-  transform: translate(-11%, 74%) rotate(-8deg);
-  transition: transform .66s cubic-bezier(.23,.76,.27,1);
+  opacity: 0;
+  transform: translateY(58%) scale(.85);
+  transition: opacity .3s ease, transform .52s cubic-bezier(.23,.76,.27,1);
 }
 :is(.button, .quote-dock button):is(:hover, :focus-visible)::before {
-  transform: translate(0, -12%) rotate(0);
+  opacity: 1;
+  transform: translateY(-12%) scale(1);
 }
 :is(.button, .quote-dock button) svg { transition: transform .4s cubic-bezier(.23,.76,.27,1); }
 :is(.button, .quote-dock button):is(:hover, :focus-visible) svg { transform: translate(2px, -2px); }

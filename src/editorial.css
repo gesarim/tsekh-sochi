@@ -22,7 +22,6 @@ h3 { font-weight: 620; }
 .button.light { --hover-fill: #dcdcdc; }
 .eyebrow { letter-spacing: .08em; }
 .photo { background: #222; border-radius: 10px; }
-.photo img { filter: grayscale(1); }
 .photo figcaption:not(.sr-only) { letter-spacing: 0; background: #111d; }
 .tone-soft, .calculation { background: #f1f1f1; }
 .dark .section-heading-row p, .dark .advantages p, .final-cta p { color: #bdbdbd; }
@@ -137,12 +136,11 @@ h3 { font-weight: 620; }
 h1, h2 { font-weight: 440; letter-spacing: -.06em; }
 .header { background: #f8f8f8eb; }
 .tone-soft, .calculation { background: #ececec; }
-.photo img { filter: grayscale(1); }
 .hero-stage { padding: 0 clamp(12px, 2.4vw, 40px); background: var(--paper); }
 .hero-frame { border-radius: 0 0 8px 8px; min-height: clamp(550px, 84svh, 880px); }
 .hero-frame::after { background: linear-gradient(90deg, #131313ec, #13131377 61%, #13131326), linear-gradient(0deg, #1717178a, transparent 46%); }
 .hero .hero-copy { justify-items: start; text-align: left; }
-.hero h1 { font-weight: 430; font-size: clamp(47px, 8.1vw, 135px); }
+.hero h1 { font-weight: 430; font-size: clamp(39px, 5.8vw, 86px); line-height: .99; letter-spacing: -.055em; }
 .hero .hero-description { max-width: 43ch; }
 .hero .hero-buttons { justify-content: flex-start; }
 .hero-scroll { left: auto; right: 24px; translate: none; }
@@ -162,7 +160,7 @@ h1, h2 { font-weight: 440; letter-spacing: -.06em; }
 }
 @media (max-width: 650px) {
   .hero-frame { min-height: max(550px, 78svh); }
-  .hero h1 { font-size: clamp(26px, 9.3vw, 61px); }
+  .hero h1 { font-size: clamp(28px, 8vw, 49px); }
   .hero-scroll { right: 15px; }
 }
 @supports (animation-timeline: view()) {
@@ -175,7 +173,7 @@ h1, h2 { font-weight: 440; letter-spacing: -.06em; }
 @keyframes open-frame { from { clip-path: inset(7% 11% round 12px); } to { clip-path: inset(0 round 8px); } }
 
 .header-over-hero {
-  position: absolute;
+  position: fixed;
   inset: 16px 0 auto;
   background: transparent;
   border: 0;
@@ -201,7 +199,7 @@ h1, h2 { font-weight: 440; letter-spacing: -.06em; }
               linear-gradient(90deg, #12121268, transparent 75%);
 }
 .hero .hero-copy { padding-block: calc(var(--header) + 58px) clamp(82px, 11vh, 132px); }
-.hero-photo img { object-position: 57% 42%; filter: grayscale(1); }
+.hero-photo img { object-position: 57% 42%; }
 
 @media (max-width: 650px) {
   .header-over-hero { inset-block-start: 10px; }
