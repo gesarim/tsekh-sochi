@@ -347,3 +347,29 @@ a.contact-tile:is(:hover, :focus-visible) { box-shadow: 0 0 0 1px var(--ink); }
   .contact-cards li:last-child { grid-column: 1 / -1; }
   .contact-tile { padding: 14px; gap: 8px; }
 }
+
+.calculation-photo { padding-block: clamp(20px, 3vw, 44px); }
+.calculation-photo .calculation-image { margin: 0; aspect-ratio: auto; }
+.calculation-image img { object-position: 40% 65%; }
+
+.modeler-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 2vw, 28px);
+}
+.modeler-profile .modeler-photo { border-radius: 28px; min-height: 100%; aspect-ratio: 1.1; }
+.modeler-copy {
+  display: grid;
+  align-content: center;
+  gap: 14px;
+  padding: clamp(24px, 4vw, 58px);
+  border-radius: 28px;
+  background: var(--surface-gray);
+}
+.modeler-role { color: var(--muted); font-size: 14px; font-weight: 650; }
+.modeler-tasks { display: grid; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.modeler-tasks li { background: #fff; border-radius: 12px; padding: 9px 13px; }
+@media (max-width: 750px) {
+  .modeler-profile { grid-template-columns: 1fr; }
+  .modeler-profile .modeler-photo { min-height: 0; aspect-ratio: 1.45; }
+}

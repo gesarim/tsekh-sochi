@@ -18,9 +18,18 @@ function ServiceShowcase({ onLead }: { onLead: OpenLead }) {
 }
 
 function Experience() {
-  return <section className="section experience"><div className="container split-grid">
-    <div><p className="eyebrow">Опыт команды</p><h2>30 лет опыта</h2></div>
-    <div className="body-copy"><p>Команда ЦЕХЪ объединяет специалистов с более чем 30-летним профессиональным опытом. За эти годы наши мастера участвовали в реализации проектов для крупных российских и международных заказчиков — от сложной сценической одежды до изделий с высокими требованиями к конструкции и исполнению.</p><p>Сегодня мы применяем накопленные знания на собственном производстве в Сочи, сочетая традиции профессионального пошива с современными технологиями.</p><Button href="/production" style="outline">О производстве</Button></div>
+  return <section className="section experience"><div className="container modeler-profile">
+    <Photo name="pattern" className="modeler-photo" />
+    <div className="modeler-copy">
+      <p className="modeler-role">Главный модельер ЦЕХЪ</p>
+      <h2>Валентина</h2>
+      <p>Валентина помогает превратить эскиз или референс в модель, готовую к пошиву.</p>
+      <ul role="list" className="modeler-tasks">
+        <li>Прорабатывает силуэт и конструкцию изделия.</li>
+        <li>Подбирает ткань с учётом того, как она держит форму.</li>
+        <li>Уточняет посадку и детали на примерке.</li>
+      </ul>
+    </div>
   </div></section>
 }
 
