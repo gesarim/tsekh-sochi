@@ -58,7 +58,7 @@ export function Breadcrumbs({ items }: { items: { href?: string; label: string }
 export function ServiceCard({ path, title, description, image, onCalculate }: { path: string; title: string; description: string; image: string; onCalculate: () => void }) {
   return <article className="service-card"><a href={sitePath(path)} className="service-card-link group">
     <Photo name={image} />
-    <div className="service-caption"><div><h3>{title}</h3><p>{description}</p></div><span className="round-icon"><ArrowUpRight size={19} aria-hidden="true" /></span></div>
+    <div className="service-caption"><div><h3>{title}</h3><p>{description}</p></div></div>
   </a><Button onClick={onCalculate}>Рассчитать стоимость</Button></article>
 }
 
