@@ -26,7 +26,7 @@ h3 { font-weight: 620; }
 .photo { background: #222; border-radius: var(--radius-media); }
 .photo figcaption:not(.sr-only) { letter-spacing: 0; background: #111d; }
 .tone-soft, .calculation { background: #f1f1f1; }
-.dark .section-heading-row p, .dark .advantages p, .final-cta p { color: #bdbdbd; }
+.dark .advantages p, .final-cta p { color: #bdbdbd; }
 .footer a:hover { color: #ccc; }
 .footer-bottom { border-color: #484848; }
 .filters button, .round-icon { border-color: #ccc; }
@@ -57,7 +57,6 @@ h3 { font-weight: 620; }
 .hero .facts { margin-top: 0; border-top: 0; }
 .hero .facts strong { font-weight: 650; }
 
-.section-heading-row h2 { max-width: 16ch; }
 .audience-grid { grid-template-columns: 1.3fr .7fr 1fr; gap: clamp(15px, 2vw, 35px); align-items: start; }
 .audience-card:first-child { grid-column: span 2; }
 .audience-card:first-child .photo { aspect-ratio: 1.83; }
@@ -225,11 +224,10 @@ h1, h2 { font-weight: 440; letter-spacing: -.06em; }
 
 :root { --paper: #fff; --ink: #191919; --dark: #1a1a1a; }
 h2 { font-size: clamp(29px, 4.35vw, 68px); text-wrap: balance; }
-.section-heading-row h2, .experience h2, .final-grid h2 { max-width: none; }
+.experience h2, .final-grid h2 { max-width: none; }
 .page-hero h1 { font-size: clamp(32px, 5.2vw, 82px); text-wrap: balance; }
-.section-heading-row p { max-width: 48ch; }
-.services-showcase .section-heading-row h2 span { display: block; }
-.services-showcase .section-heading-row h2 span:last-child { white-space: nowrap; }
+.services-showcase .section-heading h2 span { display: block; }
+.services-showcase .section-heading h2 span:last-child { white-space: nowrap; }
 .services-showcase .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .services-showcase .service-card { padding: 12px; border-radius: var(--radius-card); border: 1px solid #ddd; background: #fff; display: flex; flex-direction: column; gap: 12px; }
 .service-card-link { display: block; }
@@ -304,9 +302,6 @@ h2 { font-size: clamp(29px, 4.35vw, 68px); text-wrap: balance; }
   padding: clamp(17px, 2vw, 28px);
 }
 .process-section .process-step > span { font-size: 14px; font-variant-numeric: tabular-nums; }
-@media (min-width: 651px) {
-  .services-showcase .section-heading-row p { justify-self: end; text-align: right; }
-}
 @media (max-width: 900px) {
   .process-section .process-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }

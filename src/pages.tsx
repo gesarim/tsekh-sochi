@@ -12,7 +12,7 @@ export function CostForm({ type }: { type?: number }) {
 
 function ServiceShowcase({ onLead }: { onLead: OpenLead }) {
   return <section className="section tone-soft services-showcase"><div className="container">
-    <SectionHeading title={<><span>От идеи</span><span>до последнего шва</span></>} description="Разрабатываем лекала, шьём образцы и партии." />
+    <SectionHeading title={<><span>От идеи</span><span>до последнего шва</span></>} />
     <div className="service-grid">{services.map(service => <ServiceCard key={service.id} title={service.title} description={service.description} image={service.image} path={'/services/'+service.id} onCalculate={() => onLead(service.type)} />)}</div>
   </div></section>
 }
@@ -37,7 +37,7 @@ const qualityIcons = [Award, Factory, Layers, Ruler, Settings2, ShieldCheck]
 
 function Quality() {
   return <section className="section dark"><div className="container">
-    <SectionHeading eyebrow="Качество исполнения" title="Точность в деталях" description="Следим за качеством от лекал до последней строчки." />
+    <SectionHeading title="Точность в деталях" />
     <div className="stitch-stage"><Photo name="stitch" className="stitch-photo" /></div>
     <ul className="advantages" role="list">{advantages.map(([title, description], index) => {
       const Icon = qualityIcons[index]
@@ -73,7 +73,7 @@ export function Home({ onLead }: { onLead: OpenLead }) {
       </div>
     </section>
     <section id="audiences" className="section audiences"><div className="container">
-      <SectionHeading eyebrow="Направления" title="Пошив под вашу задачу" description="От одного изделия до партии." />
+      <SectionHeading title="Пошив под вашу задачу" />
       <div className="audience-grid">{audiences.map(item => <a className="audience-card group" href={sitePath(item.path)} key={item.path}>
         <Photo name={item.image} /><div className="audience-copy"><h3>{item.title}</h3><p>{item.description}</p><span className="text-link">{item.label} <ArrowUpRight size={17} aria-hidden="true" /></span></div>
       </a>)}</div>
@@ -82,11 +82,11 @@ export function Home({ onLead }: { onLead: OpenLead }) {
     <Quality />
     <Experience />
     <section className="section portfolio-section"><div className="container">
-      <SectionHeading eyebrow="Портфолио" title="Примеры изделий" description="Жакеты, униформа и сценические костюмы." /><p className="demo-note">Демонстрационные примеры со сгенерированными изображениями</p><Portfolio />
+      <SectionHeading title="Примеры изделий" /><p className="demo-note">Демонстрационные примеры со сгенерированными изображениями</p><Portfolio />
     </div></section>
     <Process />
     <section className="section dark workshop-section"><div className="container">
-      <SectionHeading eyebrow="Производство" title="Наш цех в Сочи" description="Показываем, как устроен пошив в нашем цехе." />
+      <SectionHeading title="Наш цех в Сочи" />
       <div className="workshop-stage"><Photo name="studio-v2" className="workshop-wide" /></div><div className="section-action"><Button href="/production" style="light">О производстве</Button></div>
     </div></section>
     <section className="section"><div className="container fit-grid"><Photo name="individual" /><div><p className="eyebrow">Индивидуальная посадка</p><h2>Посадка по меркам</h2><p>Правильная посадка — это баланс конструкции, пропорций, материала и особенностей фигуры. Мы уделяем внимание этим деталям, чтобы изделие не только выглядело красиво, но и было комфортным.</p><ul className="fit-list"><li>Учитываем индивидуальные пропорции.</li><li>Работаем со сложными силуэтами.</li><li>Корректируем конструкцию под задачу.</li></ul><Button onClick={() => onLead(2)}>Обсудить индивидуальный пошив</Button></div></div></section>
@@ -110,7 +110,7 @@ export function AudiencePage({ keyName, onLead }: { keyName: keyof typeof landin
   return <>
     <PageHero title={item.title} description={item.description} image={item.image} crumbs={[{ label }]}><Button onClick={() => onLead(item.type)}>{item.cta}</Button></PageHero>
     <Points title={item.heading} points={item.points} />
-    <section className="section"><div className="container"><SectionHeading title="Пример проекта" description="Демонстрационный пример со сгенерированным изображением." /><Portfolio type={item.type} /></div></section>
+    <section className="section"><div className="container"><SectionHeading title="Пример проекта" /><Portfolio type={item.type} /></div></section>
     <Process title="Как проходит заказ" /><FAQAccordion /><CostForm type={item.type} />
   </>
 }
@@ -124,7 +124,7 @@ export function ServicesPage({ onLead }: { onLead: OpenLead }) {
 export function ServicePage({ service, onLead }: { service: typeof services[number]; onLead: OpenLead }) {
   return <><PageHero title={service.title} description={service.description} image={service.image} crumbs={[{ href: '/services', label: 'Услуги' }, { label: service.title }]}><Button onClick={() => onLead(service.type)}>Рассчитать стоимость</Button></PageHero>
     <Points title="Что входит в работу" points={[[ 'Для кого', service.audience ],[ 'Что подготовить', service.input ],[ 'Как проходит работа', service.process ]]} />
-    <section className="section"><div className="container"><SectionHeading title="Пример задачи" description="Демонстрация возможного проекта." /><Portfolio type={service.type} /></div></section>
+    <section className="section"><div className="container"><SectionHeading title="Пример задачи" /><Portfolio type={service.type} /></div></section>
     <CostForm type={service.type} />
   </>
 }
@@ -145,7 +145,7 @@ export function ProjectPage({ project, onLead }: { project: typeof gallery[numbe
 export function ProductionPage({ onLead }: { onLead: OpenLead }) {
   return <><PageHero title="Швейный цех в Сочи" description="Собственное швейное производство и специалисты с более чем 30-летним профессиональным опытом." image="workshop" crumbs={[{ label: 'О производстве' }]}><Button onClick={() => onLead()}>Обсудить проект</Button></PageHero>
     <Experience /><Quality />
-    <section className="section"><div className="container"><SectionHeading title="Производство изнутри" description="Визуализации производственных процессов." /><div className="production-grid">{[['pattern','Конструирование'],['cut','Раскрой'],['hero','Пошив'],['seams','Проверка швов']].map(([name, label]) => <div key={name}><Photo name={name} /><h3>{label}</h3></div>)}</div></div></section>
+    <section className="section"><div className="container"><SectionHeading title="Производство изнутри" /><div className="production-grid">{[['pattern','Конструирование'],['cut','Раскрой'],['hero','Пошив'],['seams','Проверка швов']].map(([name, label]) => <div key={name}><Photo name={name} /><h3>{label}</h3></div>)}</div></div></section>
     <Process /><FinalCTA onLead={onLead} />
   </>
 }

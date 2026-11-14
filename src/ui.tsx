@@ -45,9 +45,9 @@ export function Photo({ name, className = '', priority = false, children }: { na
   </figure>
 }
 
-export function SectionHeading({ title, description }: { title: ReactNode; description?: string; eyebrow?: string }) {
+export function SectionHeading({ title }: { title: ReactNode }) {
   return <div className="section-heading">
-    <div className="section-heading-row"><h2>{title}</h2>{description && <p>{description}</p>}</div>
+    <h2>{title}</h2>
   </div>
 }
 
@@ -84,11 +84,11 @@ export function ProcessStep({ value, index }: { value: string[]; index: number }
 }
 
 export function Process({ title = 'Понятный процесс. Продуманный результат.' }: { title?: string }) {
-  return <section className="section process-section"><div className="container"><SectionHeading eyebrow="Этапы работы" title={title} description="Вы понимаете, что происходит с вашим заказом на каждом этапе." /><ol className="process-grid">{steps.map((value, index) => <ProcessStep key={value[0]} value={value} index={index} />)}</ol><Button href="/price">Обсудить свой проект</Button></div></section>
+  return <section className="section process-section"><div className="container"><SectionHeading title={title} /><ol className="process-grid">{steps.map((value, index) => <ProcessStep key={value[0]} value={value} index={index} />)}</ol><Button href="/price">Обсудить свой проект</Button></div></section>
 }
 
 export function FAQAccordion() {
-  return <section className="section"><div className="container faq-grid"><SectionHeading eyebrow="Частые вопросы" title="Частые вопросы" /><div className="faq-list">{faq.map(([question, answer]) => <details name="faq" key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
+  return <section className="section"><div className="container faq-grid"><SectionHeading title="Частые вопросы" /><div className="faq-list">{faq.map(([question, answer]) => <details name="faq" key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
 }
 
 export function ContactSection() {
