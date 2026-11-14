@@ -72,12 +72,12 @@ export function Home({ onLead }: { onLead: OpenLead }) {
     <Quality />
     <Experience />
     <section className="section portfolio-section"><div className="container">
-      <SectionHeading eyebrow="Портфолио" title="Примеры изделий" description="Жакеты, униформа и сценические костюмы." /><p className="demo-note">Демонстрационные примеры со сгенерированными изображениями</p><Portfolio preview /><Button href="/works" style="outline">Смотреть все работы</Button>
+      <SectionHeading eyebrow="Портфолио" title="Примеры изделий" description="Жакеты, униформа и сценические костюмы." /><p className="demo-note">Демонстрационные примеры со сгенерированными изображениями</p><Portfolio />
     </div></section>
     <Process />
     <section className="section dark workshop-section"><div className="container">
       <SectionHeading eyebrow="Производство" title="Наш цех в Сочи" description="Показываем, как устроен пошив в нашем цехе." />
-      <div className="workshop-stage"><Photo name="studio" className="workshop-wide" /></div><div className="section-action"><Button href="/production" style="light">О производстве</Button></div>
+      <div className="workshop-stage"><Photo name="studio-v2" className="workshop-wide" /></div><div className="section-action"><Button href="/production" style="light">О производстве</Button></div>
     </div></section>
     <section className="section"><div className="container fit-grid"><Photo name="individual" /><div><p className="eyebrow">Индивидуальная посадка</p><h2>Посадка по меркам</h2><p>Правильная посадка — это баланс конструкции, пропорций, материала и особенностей фигуры. Мы уделяем внимание этим деталям, чтобы изделие не только выглядело красиво, но и было комфортным.</p><ul className="fit-list"><li>Учитываем индивидуальные пропорции.</li><li>Работаем со сложными силуэтами.</li><li>Корректируем конструкцию под задачу.</li></ul><Button onClick={() => onLead(2)}>Обсудить индивидуальный пошив</Button></div></div></section>
     <CostForm /><FAQAccordion /><FinalCTA onLead={onLead} /><ContactSection onLead={onLead} />

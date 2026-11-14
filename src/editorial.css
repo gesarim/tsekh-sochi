@@ -261,3 +261,40 @@ h2 { font-size: clamp(29px, 4.35vw, 68px); text-wrap: balance; }
   .advantages { grid-template-columns: 1fr; }
   .advantage-icon { margin-bottom: 14px; }
 }
+
+/* Light surfaces use the same gray as the real estate site. */
+:root { --surface-gray: #f7f7f7; }
+.tone-soft, .calculation, .portfolio-section { background: var(--surface-gray); }
+.advantages .advantage-card { background: #fff; color: var(--ink); }
+.advantages .advantage-icon { background: var(--surface-gray); color: var(--ink); }
+.dark .advantages p { color: var(--muted); }
+.services-showcase .service-card {
+  border: 0;
+  border-radius: 28px;
+  padding: clamp(12px, 1.4vw, 20px);
+}
+.services-showcase .service-card .photo { border-radius: 20px; }
+.portfolio-section .work-card { background: #fff; border-radius: 23px; overflow: hidden; }
+.portfolio-section .work-card-copy { padding: 16px; }
+.portfolio-section .portfolio-grid { row-gap: 28px; }
+.process-section { background: #fff; }
+.process-section .process-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+.process-section .process-step {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--surface-gray);
+  padding: clamp(17px, 2vw, 28px);
+}
+.process-section .process-step > span { font-size: 14px; font-variant-numeric: tabular-nums; }
+@media (min-width: 651px) {
+  .services-showcase .section-heading-row p { justify-self: end; text-align: right; }
+}
+@media (max-width: 900px) {
+  .process-section .process-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 480px) {
+  .process-section .process-grid { grid-template-columns: 1fr; }
+}

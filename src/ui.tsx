@@ -69,11 +69,10 @@ export function PortfolioCard({ project }: { project: typeof gallery[number] }) 
   </a>
 }
 
-export function Portfolio({ preview = false, type }: { preview?: boolean; type?: number }) {
+export function Portfolio({ type }: { type?: number }) {
   const [filter, setFilter] = useState('Все работы')
-  const categories = ['Все работы', ...gallery.map(item => item.category)]
-  let projects = type === undefined ? gallery.filter(item => filter === 'Все работы' || item.category === filter) : gallery.filter(item => item.type === type)
-  if (preview && filter === 'Все работы') projects = projects.slice(0, 3)
+  const categories = ['Все работы', ...new Set(gallery.map(item => item.category))]
+  const projects = type === undefined ? gallery.filter(item => filter === 'Все работы' || item.category === filter) : gallery.filter(item => item.type === type)
   return <>
     {type === undefined && <div className="filters" aria-label="Категории работ">{categories.map(category => <button type="button" key={category} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}</div>}
     <div className={'portfolio-grid'+(type === undefined ? '' : ' portfolio-single')} aria-live="polite">{projects.map(project => <PortfolioCard key={project.id} project={project} />)}</div>
@@ -85,7 +84,7 @@ export function ProcessStep({ value, index }: { value: string[]; index: number }
 }
 
 export function Process({ title = 'Понятный процесс. Продуманный результат.' }: { title?: string }) {
-  return <section className="section tone-soft"><div className="container"><SectionHeading eyebrow="Этапы работы" title={title} description="Вы понимаете, что происходит с вашим заказом на каждом этапе." /><ol className="process-grid">{steps.map((value, index) => <ProcessStep key={value[0]} value={value} index={index} />)}</ol><Button href="/price">Обсудить свой проект</Button></div></section>
+  return <section className="section process-section"><div className="container"><SectionHeading eyebrow="Этапы работы" title={title} description="Вы понимаете, что происходит с вашим заказом на каждом этапе." /><ol className="process-grid">{steps.map((value, index) => <ProcessStep key={value[0]} value={value} index={index} />)}</ol><Button href="/price">Обсудить свой проект</Button></div></section>
 }
 
 export function FAQAccordion() {
