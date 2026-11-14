@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Menu, Plus, X } from 'lucide-react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Menu, Plus, X, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
 import { gallery, imageAlt, nav, site, sitePath, steps, faq } from './content'
 
 export type OpenLead = (type?: number) => void
@@ -93,17 +93,28 @@ export function FAQAccordion() {
 
 export function ContactSection({ onLead }: { onLead: OpenLead }) {
   const c = site.contacts
-  return <section className="section contact-section"><div className="container contact-grid">
-    <div><p className="eyebrow">Контакты</p><h2>Свяжитесь с нами</h2></div>
-    <div className="contact-copy"><p><strong>ЦЕХЪ · {c.city}</strong><br />{c.address || 'Швейное производство'}</p>
-    {c.hours && <p>{c.hours}</p>}{c.phone && <a href={'tel:'+c.phone}>{c.phone}</a>}{c.email && <a href={'mailto:'+c.email}>{c.email}</a>}{c.telegram && <a href={c.telegram}>Telegram</a>}
-    {c.map && <Button href={c.map} style="outline">Построить маршрут</Button>}
-    <Button onClick={() => onLead()}>Обсудить проект</Button></div>
+  const contacts = [
+    { label: 'WhatsApp', value: c.whatsapp ? 'Написать' : '', href: c.whatsapp, Icon: MessageCircle },
+    { label: 'Telegram', value: c.telegram ? 'Написать' : '', href: c.telegram, Icon: Send },
+    { label: 'Телефон', value: c.phone, href: c.phone ? 'tel:' + c.phone : '', Icon: Phone },
+    { label: 'Email', value: c.email, href: c.email ? 'mailto:' + c.email : '', Icon: Mail },
+    { label: 'Адрес', value: c.address || c.city, href: c.address ? c.map || 'https://yandex.ru/maps/?text=' + encodeURIComponent(c.city + ', ' + c.address) : '', Icon: MapPin },
+  ]
+  return <section className="section contact-section contact-directory"><div className="container">
+    <h2>Свяжитесь с нами</h2>
+    <ul role="list" className="contact-cards">{contacts.map(({ label, value, href, Icon }) => {
+      const contents = <><Icon size={22} aria-hidden="true" /><div><h3>{label}</h3><p>{value || 'Скоро добавим'}</p></div>{href && <ArrowUpRight size={18} aria-hidden="true" />}</>
+      return <li key={label}>{href ? <a className="contact-tile" href={href}>{contents}</a> : <div className="contact-tile">{contents}</div>}</li>
+    })}</ul>
+    <Button onClick={() => onLead()}>Рассчитать стоимость</Button>
   </div></section>
 }
 
-export function FinalCTA({ onLead, type, label = 'Обсудить проект' }: { onLead: OpenLead; type?: number; label?: string }) {
-  return <section className="final-cta"><div className="container final-grid"><h2>Обсудим ваш заказ</h2><div><p>Расскажите о своём проекте. Мы поможем определить, как воплотить его в готовое изделие.</p><Button style="light" onClick={() => onLead(type)}>{label}</Button><a className="text-link" href={sitePath('/works')}>Посмотреть наши работы <ArrowRight size={17} /></a></div></div></section>
+export function FinalCTA({ onLead, type, label = 'Рассчитать стоимость' }: { onLead: OpenLead; type?: number; label?: string }) {
+  return <section className="section proposal"><div className="container proposal-grid">
+    <div className="proposal-copy"><h2>Обсудим ваш заказ</h2><p>По эскизу или фотографии подскажем, с чего начать пошив и что понадобится для расчёта.</p><Button onClick={() => onLead(type)}>{label}</Button></div>
+    <Photo name="jacket" />
+  </div></section>
 }
 
 export function Footer() {

@@ -2,7 +2,7 @@ export const site = {
   url: (import.meta.env.VITE_SITE_URL || 'https://tsekh-sochi.gesarim.chatgpt.site').replace(/\/$/, ''),
   description: 'ЦЕХЪ — собственное швейное производство в Сочи. Разработка моделей, лекала, пошив одежды для брендов и бизнеса, индивидуальные изделия. Более 30 лет опыта специалистов.',
   leadEndpoint: import.meta.env.VITE_LEAD_ENDPOINT as string | undefined,
-  contacts: { city: 'Сочи', phone: '', address: '', email: '', telegram: '', hours: '', map: '', legal: '' },
+  contacts: { city: 'Сочи', phone: import.meta.env.VITE_CONTACT_PHONE || '', address: import.meta.env.VITE_CONTACT_ADDRESS || '', email: import.meta.env.VITE_CONTACT_EMAIL || '', telegram: import.meta.env.VITE_CONTACT_TELEGRAM || '', whatsapp: import.meta.env.VITE_CONTACT_WHATSAPP || '', hours: '', map: import.meta.env.VITE_CONTACT_MAP || '', legal: '' },
 }
 
 export const nav = [

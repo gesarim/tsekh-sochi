@@ -4,9 +4,10 @@ import { LeadForm } from './lead'
 import { Breadcrumbs, Button, ContactSection, FAQAccordion, FinalCTA, Photo, Portfolio, Process, SectionHeading, ServiceCard, type OpenLead } from './ui'
 
 export function CostForm({ type }: { type?: number }) {
-  return <section id="calculation" className="section calculation"><div className="container split-grid">
-    <div><p className="eyebrow">Индивидуальный расчёт</p><h2>Рассчитаем ваш заказ</h2><p>Опишите идею или приложите эскиз.</p></div><LeadForm type={type} />
-  </div></section>
+  return <section id="calculation" className="section calculation calculation-photo">
+    <Photo name="cut" className="calculation-image" />
+    <div className="container calculation-layout"><LeadForm type={type} /></div>
+  </section>
 }
 
 function ServiceShowcase({ onLead }: { onLead: OpenLead }) {
