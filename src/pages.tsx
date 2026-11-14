@@ -13,7 +13,6 @@ function ServiceShowcase({ onLead }: { onLead: OpenLead }) {
   return <section className="section tone-soft services-showcase"><div className="container">
     <SectionHeading title={<><span>От идеи</span><span>до последнего шва</span></>} description="Разрабатываем лекала, шьём образцы и партии." />
     <div className="service-grid">{services.map(service => <ServiceCard key={service.id} title={service.title} description={service.description} image={service.image} path={'/services/'+service.id} onCalculate={() => onLead(service.type)} />)}</div>
-    <div className="section-action"><Button onClick={() => onLead()}>Рассчитать стоимость</Button></div>
   </div></section>
 }
 
