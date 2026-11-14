@@ -1,0 +1,115 @@
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Menu, Plus, X } from 'lucide-react'
+import { gallery, imageAlt, nav, site, sitePath, steps, faq } from './content'
+
+export type OpenLead = (type?: number) => void
+
+export function Button({ children, href, onClick, style = 'primary', down = false }: { children: ReactNode; href?: string; onClick?: () => void; style?: string; down?: boolean }) {
+  const Icon = down ? ArrowDown : ArrowUpRight
+  const content = <><span>{children}</span><Icon size={17} strokeWidth={1.7} aria-hidden="true" /></>
+  return href ? <a href={sitePath(href)} className={'button '+style}>{content}</a> : <button type="button" onClick={onClick} className={'button '+style}>{content}</button>
+}
+
+export function Logo() {
+  return <a className="wordmark" href={sitePath('/')} aria-label="ЦЕХЪ — главная">ЦЕХЪ</a>
+}
+
+export function Header({ path, onLead }: { path: string; onLead: OpenLead }) {
+  const [menu, setMenu] = useState(false)
+  const mobileMenu = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (!menu) return
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setMenu(false); mobileMenu.current?.focus() }
+    }
+    document.addEventListener('keydown', close)
+    return () => document.removeEventListener('keydown', close)
+  }, [menu])
+  return <header className="header">
+    <div className="container nav-shell">
+      <Logo />
+      <nav id="site-nav" aria-label="Основная навигация" className={menu ? 'nav open' : 'nav'}>
+        {nav.map(([href, label]) => <a key={href} aria-current={path === href || (href !== '/' && path.startsWith(href+'/')) ? 'page' : undefined} href={sitePath(href)}>{label}</a>)}
+        <button className="mobile-nav-cta" onClick={() => { setMenu(false); onLead() }}>Рассчитать заказ <ArrowUpRight size={17} /></button>
+      </nav>
+      <div className="nav-cta"><Button style="nav-button" onClick={() => onLead()}>Рассчитать заказ</Button></div>
+      <button ref={mobileMenu} type="button" className="menu-button" aria-label={menu ? 'Закрыть меню' : 'Открыть меню'} aria-expanded={menu} aria-controls="site-nav" onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</button>
+    </div>
+  </header>
+}
+
+export function Photo({ name, className = '', priority = false, children }: { name: string; className?: string; priority?: boolean; children?: ReactNode }) {
+  return <figure className={'photo '+className}>
+    <img src={sitePath('/images/'+name+'.webp')} alt={imageAlt[name]} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : undefined} decoding={priority ? 'auto' : 'async'} />
+    <figcaption className={children ? undefined : 'sr-only'}>{children ?? 'Визуализация, созданная ИИ'}</figcaption>
+  </figure>
+}
+
+export function SectionHeading({ title, description }: { title: string; description?: string; eyebrow?: string }) {
+  return <div className="section-heading">
+    <div className="section-heading-row"><h2>{title}</h2>{description && <p>{description}</p>}</div>
+  </div>
+}
+
+export function Breadcrumbs({ items }: { items: { href?: string; label: string }[] }) {
+  return <nav className="breadcrumbs" aria-label="Хлебные крошки"><a href={sitePath('/')}>Главная</a>{items.map(({ href, label }) => <span key={label}> / {href ? <a href={sitePath(href)}>{label}</a> : <span aria-current="page">{label}</span>}</span>)}</nav>
+}
+
+export function ServiceCard({ path, title, description, image }: { path: string; title: string; description: string; image: string }) {
+  return <a href={sitePath(path)} className="service-card group">
+    <Photo name={image} />
+    <div className="service-caption"><div><h3>{title}</h3><p>{description}</p></div><span className="round-icon"><ArrowUpRight size={19} aria-hidden="true" /></span></div>
+  </a>
+}
+
+export function PortfolioCard({ project }: { project: typeof gallery[number] }) {
+  return <a className="work-card group" href={sitePath('/works/'+project.id)}>
+    <Photo name={project.image}>ИИ-иллюстрация · демонстрация</Photo>
+    <div className="work-card-copy"><div><p className="eyebrow">{project.category}</p><h3>{project.title}</h3><p>{project.task}</p></div><span className="round-icon"><ArrowUpRight size={18} aria-hidden="true" /></span></div>
+  </a>
+}
+
+export function Portfolio({ preview = false, type }: { preview?: boolean; type?: number }) {
+  const [filter, setFilter] = useState('Все работы')
+  const categories = ['Все работы', ...gallery.map(item => item.category)]
+  let projects = type === undefined ? gallery.filter(item => filter === 'Все работы' || item.category === filter) : gallery.filter(item => item.type === type)
+  if (preview && filter === 'Все работы') projects = projects.slice(0, 3)
+  return <>
+    {type === undefined && <div className="filters" aria-label="Категории работ">{categories.map(category => <button type="button" key={category} aria-pressed={filter === category} onClick={() => setFilter(category)}>{category}</button>)}</div>}
+    <div className={'portfolio-grid'+(type === undefined ? '' : ' portfolio-single')} aria-live="polite">{projects.map(project => <PortfolioCard key={project.id} project={project} />)}</div>
+  </>
+}
+
+export function ProcessStep({ value, index }: { value: string[]; index: number }) {
+  return <li className="process-step"><span>{String(index+1).padStart(2, '0')}</span><div><h3>{value[0]}</h3><p>{value[1]}</p></div></li>
+}
+
+export function Process({ title = 'Понятный процесс. Продуманный результат.' }: { title?: string }) {
+  return <section className="section tone-soft"><div className="container"><SectionHeading eyebrow="Этапы работы" title={title} description="Вы понимаете, что происходит с вашим заказом на каждом этапе." /><ol className="process-grid">{steps.map((value, index) => <ProcessStep key={value[0]} value={value} index={index} />)}</ol><Button href="/price">Обсудить свой проект</Button></div></section>
+}
+
+export function FAQAccordion() {
+  return <section className="section"><div className="container faq-grid"><SectionHeading eyebrow="Частые вопросы" title="Отвечаем на важные вопросы" /><div className="faq-list">{faq.map(([question, answer]) => <details name="faq" key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
+}
+
+export function ContactSection({ onLead }: { onLead: OpenLead }) {
+  const c = site.contacts
+  return <section className="section contact-section"><div className="container contact-grid">
+    <div><p className="eyebrow">Контакты</p><h2>Давайте создавать вместе</h2></div>
+    <div className="contact-copy"><p><strong>ЦЕХЪ · {c.city}</strong><br />{c.address || 'Швейное производство'}</p>
+    {c.hours && <p>{c.hours}</p>}{c.phone && <a href={'tel:'+c.phone}>{c.phone}</a>}{c.email && <a href={'mailto:'+c.email}>{c.email}</a>}{c.telegram && <a href={c.telegram}>Telegram</a>}
+    {c.map && <Button href={c.map} style="outline">Построить маршрут</Button>}
+    <Button onClick={() => onLead()}>Обсудить проект</Button></div>
+  </div></section>
+}
+
+export function FinalCTA({ onLead, type, label = 'Обсудить проект' }: { onLead: OpenLead; type?: number; label?: string }) {
+  return <section className="final-cta"><div className="container final-grid"><h2>Хорошая идея заслуживает точного исполнения.</h2><div><p>Расскажите о своём проекте. Мы поможем определить, как воплотить его в готовое изделие.</p><Button style="light" onClick={() => onLead(type)}>{label}</Button><a className="text-link" href={sitePath('/works')}>Посмотреть наши работы <ArrowRight size={17} /></a></div></div></section>
+}
+
+export function Footer() {
+  return <footer className="footer"><div className="container">
+    <div className="footer-grid"><div><Logo /><p>Собственное швейное производство<br />в Сочи.</p></div><nav aria-label="Навигация в подвале">{nav.slice(1).map(([href, label]) => <a key={href} href={sitePath(href)}>{label}</a>)}<a href={sitePath('/price')}>Стоимость</a><a href={sitePath('/individual')}>Индивидуальный пошив</a></nav></div>
+    <div className="footer-bottom"><span>© ЦЕХЪ</span><a href={sitePath('/privacy')}>Обработка персональных данных</a><span>Фото изделий и производства — визуализации</span>{site.contacts.legal && <span>{site.contacts.legal}</span>}</div>
+  </div></footer>
+}
