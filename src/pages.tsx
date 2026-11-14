@@ -33,7 +33,7 @@ export function Home({ onLead }: { onLead: OpenLead }) {
     <section className="hero">
       <div className="hero-stage">
         <div className="hero-frame">
-          <Photo name="textile" className="hero-photo" priority />
+          <Photo name="hero" className="hero-photo" priority />
           <div className="container hero-copy">
             <p className="eyebrow hero-eyebrow">Швейное производство · Сочи</p>
             <h1><span>Сложные идеи.</span><span>Точное исполнение.</span></h1>

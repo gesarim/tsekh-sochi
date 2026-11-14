@@ -25,7 +25,7 @@ export function Header({ path, onLead }: { path: string; onLead: OpenLead }) {
     document.addEventListener('keydown', close)
     return () => document.removeEventListener('keydown', close)
   }, [menu])
-  return <header className="header">
+  return <header className={path === '/' ? 'header header-over-hero' : 'header'}>
     <div className="container nav-shell">
       <Logo />
       <nav id="site-nav" aria-label="Основная навигация" className={menu ? 'nav open' : 'nav'}>
