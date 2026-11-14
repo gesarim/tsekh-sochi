@@ -91,7 +91,7 @@ export function FAQAccordion() {
   return <section className="section"><div className="container faq-grid"><SectionHeading eyebrow="Частые вопросы" title="Частые вопросы" /><div className="faq-list">{faq.map(([question, answer]) => <details name="faq" key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
 }
 
-export function ContactSection({ onLead }: { onLead: OpenLead }) {
+export function ContactSection() {
   const c = site.contacts
   const contacts = [
     { label: 'WhatsApp', value: c.whatsapp ? 'Написать' : '', href: c.whatsapp, Icon: MessageCircle },
@@ -116,7 +116,6 @@ export function ContactSection({ onLead }: { onLead: OpenLead }) {
       </div>
       <iframe src={mapEmbed} title={c.address ? 'Ателье ЦЕХЪ на Яндекс Картах' : 'Сочи на Яндекс Картах'} loading="lazy" allowFullScreen />
     </div>
-    <Button onClick={() => onLead()}>Рассчитать стоимость</Button>
   </div></section>
 }
 

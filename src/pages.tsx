@@ -90,7 +90,7 @@ export function Home({ onLead }: { onLead: OpenLead }) {
       <div className="workshop-stage"><Photo name="studio-v2" className="workshop-wide" /></div><div className="section-action"><Button href="/production" style="light">О производстве</Button></div>
     </div></section>
     <section className="section"><div className="container fit-grid"><Photo name="individual" /><div><p className="eyebrow">Индивидуальная посадка</p><h2>Посадка по меркам</h2><p>Правильная посадка — это баланс конструкции, пропорций, материала и особенностей фигуры. Мы уделяем внимание этим деталям, чтобы изделие не только выглядело красиво, но и было комфортным.</p><ul className="fit-list"><li>Учитываем индивидуальные пропорции.</li><li>Работаем со сложными силуэтами.</li><li>Корректируем конструкцию под задачу.</li></ul><Button onClick={() => onLead(2)}>Обсудить индивидуальный пошив</Button></div></div></section>
-    <CostForm /><FAQAccordion /><FinalCTA onLead={onLead} /><ContactSection onLead={onLead} />
+    <CostForm /><FAQAccordion /><FinalCTA onLead={onLead} /><ContactSection />
   </>
 }
 
@@ -157,8 +157,8 @@ export function PricePage() {
   </>
 }
 
-export function ContactsPage({ onLead }: { onLead: OpenLead }) {
-  return <><PageHero title="Контакты" description="ЦЕХЪ · Швейное производство в Сочи" crumbs={[{ label: 'Контакты' }]} /><ContactSection onLead={onLead} /></>
+export function ContactsPage() {
+  return <><PageHero title="Контакты" description="ЦЕХЪ · Швейное производство в Сочи" crumbs={[{ label: 'Контакты' }]} /><ContactSection /></>
 }
 
 export function PrivacyPage() {

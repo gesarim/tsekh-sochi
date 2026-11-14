@@ -48,7 +48,7 @@ export function App({ path }: { path: string }) {
     case '/brands': case '/business': case '/individual': page = <AudiencePage keyName={path.slice(1) as keyof typeof landing} onLead={onLead} />; break
     case '/works': page = <WorksPage onLead={onLead} />; break
     case '/production': page = <ProductionPage onLead={onLead} />; break
-    case '/contacts': page = <ContactsPage onLead={onLead} />; break
+    case '/contacts': page = <ContactsPage />; break
     case '/price': page = <PricePage />; break
     case '/privacy': page = <PrivacyPage />; break
     default: page = service ? <ServicePage service={service} onLead={onLead} /> : project ? <ProjectPage project={project} onLead={onLead} /> : <MissingPage />
