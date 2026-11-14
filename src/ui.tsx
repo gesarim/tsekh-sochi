@@ -98,14 +98,24 @@ export function ContactSection({ onLead }: { onLead: OpenLead }) {
     { label: 'Telegram', value: c.telegram ? 'Написать' : '', href: c.telegram, Icon: Send },
     { label: 'Телефон', value: c.phone, href: c.phone ? 'tel:' + c.phone : '', Icon: Phone },
     { label: 'Email', value: c.email, href: c.email ? 'mailto:' + c.email : '', Icon: Mail },
-    { label: 'Адрес', value: c.address || c.city, href: c.address ? c.map || 'https://yandex.ru/maps/?text=' + encodeURIComponent(c.city + ', ' + c.address) : '', Icon: MapPin },
   ]
+  const location = c.address ? c.city + ', ' + c.address : c.city
+  const mapQuery = c.address ? 'text=' + encodeURIComponent(location) : 'll=39.7257%2C43.5855&z=11'
+  const mapEmbed = c.mapEmbed || 'https://yandex.ru/map-widget/v1/?' + mapQuery
+  const mapLink = c.map || 'https://yandex.ru/maps/?' + mapQuery
   return <section className="section contact-section contact-directory"><div className="container">
     <h2>Свяжитесь с нами</h2>
     <ul role="list" className="contact-cards">{contacts.map(({ label, value, href, Icon }) => {
       const contents = <><Icon size={22} aria-hidden="true" /><div><h3>{label}</h3><p>{value || 'Скоро добавим'}</p></div>{href && <ArrowUpRight size={18} aria-hidden="true" />}</>
       return <li key={label}>{href ? <a className="contact-tile" href={href}>{contents}</a> : <div className="contact-tile">{contents}</div>}</li>
     })}</ul>
+    <div className="contact-map">
+      <div className="contact-map-heading">
+        <div className="contact-address"><MapPin size={22} aria-hidden="true" /><div><h3>Как нас найти</h3><p>{location}</p>{!c.address && <p>Точный адрес уточняйте перед визитом.</p>}</div></div>
+        <Button href={mapLink} style="outline">Открыть в Яндекс Картах</Button>
+      </div>
+      <iframe src={mapEmbed} title={c.address ? 'Ателье ЦЕХЪ на Яндекс Картах' : 'Сочи на Яндекс Картах'} loading="lazy" allowFullScreen />
+    </div>
     <Button onClick={() => onLead()}>Рассчитать стоимость</Button>
   </div></section>
 }
