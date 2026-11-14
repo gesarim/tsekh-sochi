@@ -20,8 +20,29 @@ p{max-width:68ch}
 .eyebrow{font-size:10px;line-height:1.4;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--rust)}
 .button{@apply inline-flex items-center justify-between gap-5;min-height:51px;border-radius:6px;padding:0 17px;border:1px solid transparent;font-size:12px;font-weight:650;line-height:1.2;position:relative;isolation:isolate;overflow:hidden;width:max-content;max-width:100%;white-space:normal;text-align:left;transition:color .25s,border-color .25s,background-color .25s}
 .button svg,.text-link svg{flex:none}
-.button::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateY(102%);transition:transform .32s cubic-bezier(.2,.6,.3,1);background:var(--hover-fill)}
-.button:hover::before{transform:translateY(0)}
+:is(.button, .quote-dock button) { position: relative; isolation: isolate; overflow: hidden; }
+:is(.button, .quote-dock button)::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -65% -42% -90%;
+  border-radius: 58% 42% 0 0 / 48% 31% 0 0;
+  background: var(--hover-fill);
+  transform: translate(-11%, 74%) rotate(-8deg);
+  transition: transform .66s cubic-bezier(.23,.76,.27,1);
+}
+:is(.button, .quote-dock button):is(:hover, :focus-visible)::before {
+  transform: translate(0, -12%) rotate(0);
+}
+:is(.button, .quote-dock button) svg { transition: transform .4s cubic-bezier(.23,.76,.27,1); }
+:is(.button, .quote-dock button):is(:hover, :focus-visible) svg { transform: translate(2px, -2px); }
+.quote-dock button { --hover-fill: #484848; }
+.button:is(.outline,.nav-button):focus-visible { color: var(--paper); }
+.hero .button.outline:focus-visible { color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  :is(.button, .quote-dock button), :is(.button, .quote-dock button)::before, :is(.button, .quote-dock button) svg { transition: none; }
+  :is(.button, .quote-dock button):is(:hover, :focus-visible) svg { transform: none; }
+}
 .button.primary{color:#fff;background:var(--rust);--hover-fill:#414141}
 .button.outline{border-color:#bdbdbd;--hover-fill:var(--ink)}
 .button.outline:hover{color:var(--paper);border-color:var(--ink)}
