@@ -17,9 +17,9 @@ function ServiceShowcase({ onLead }: { onLead: OpenLead }) {
   </div></section>
 }
 
-function Experience() {
+function Experience({ image = "workshop" }: { image?: string }) {
   return <section className="section experience"><div className="container modeler-profile">
-    <Photo name="pattern" className="modeler-photo" />
+    <Photo name={image} className="modeler-photo" />
     <div className="modeler-copy">
       <p className="modeler-role">Главный модельер ЦЕХЪ</p>
       <h2>Валентина</h2>
@@ -54,11 +54,11 @@ export function Home({ onLead }: { onLead: OpenLead }) {
     <section className="hero">
       <div className="hero-stage">
         <div className="hero-frame">
-          <Photo name="hero" className="hero-photo" priority />
+          <Photo name="cover-atelier" className="hero-photo" priority />
           <div className="container hero-copy">
             <p className="eyebrow hero-eyebrow">ЦЕХЪ · Сочи</p>
-            <h1><span>Пошив одежды</span><span>и сложных изделий</span></h1>
-            <p className="hero-description">Индивидуальный пошив и производство для брендов и бизнеса.</p>
+            <h1><span>Производство одежды</span>{' '}<span>и индивидуальный пошив</span></h1>
+            <p className="hero-description">Свой цех в Сочи. Шьём партии для брендов и компаний.</p>
             <div className="hero-buttons"><Button onClick={() => onLead()}>Рассчитать стоимость</Button><Button href="/works" style="outline">Посмотреть работы</Button></div>
           </div>
           <a className="hero-scroll" href="#audiences" aria-label="Перейти к направлениям"><ArrowDown size={20} aria-hidden="true" /></a>
@@ -87,9 +87,9 @@ export function Home({ onLead }: { onLead: OpenLead }) {
     <Process />
     <section className="section dark workshop-section"><div className="container">
       <SectionHeading title="Наш цех в Сочи" />
-      <div className="workshop-stage"><Photo name="studio-v2" className="workshop-wide" /></div><div className="section-action"><Button href="/production" style="light">О производстве</Button></div>
+      <div className="workshop-stage"><Photo name="sochi-workroom" className="workshop-wide" /></div><div className="section-action"><Button href="/production" style="light">О производстве</Button></div>
     </div></section>
-    <section className="section"><div className="container fit-grid"><Photo name="individual" /><div><p className="eyebrow">Индивидуальная посадка</p><h2>Посадка по меркам</h2><p>Правильная посадка — это баланс конструкции, пропорций, материала и особенностей фигуры. Мы уделяем внимание этим деталям, чтобы изделие не только выглядело красиво, но и было комфортным.</p><ul className="fit-list"><li>Учитываем индивидуальные пропорции.</li><li>Работаем со сложными силуэтами.</li><li>Корректируем конструкцию под задачу.</li></ul><Button onClick={() => onLead(2)}>Обсудить индивидуальный пошив</Button></div></div></section>
+    <section className="section"><div className="container fit-grid"><Photo name="fitting-detail" /><div><p className="eyebrow">Индивидуальная посадка</p><h2>Посадка по меркам</h2><p>Снимаем мерки, выбираем ткань и уточняем посадку на примерке.</p><ul className="fit-list"><li>Строим лекала по вашим меркам.</li><li>Работаем со сложными силуэтами.</li><li>Подгоняем изделие по фигуре.</li></ul><Button onClick={() => onLead(2)}>Обсудить индивидуальный пошив</Button></div></div></section>
     <CostForm /><FAQAccordion /><FinalCTA onLead={onLead} /><ContactSection />
   </>
 }
@@ -116,7 +116,7 @@ export function AudiencePage({ keyName, onLead }: { keyName: keyof typeof landin
 }
 
 export function ServicesPage({ onLead }: { onLead: OpenLead }) {
-  return <><PageHero title="Услуги пошива" description="От разработки модели и лекал до образца, индивидуального изделия или партии." image="pattern" crumbs={[{ label: 'Услуги' }]}><Button onClick={() => onLead()}>Рассчитать стоимость</Button></PageHero>
+  return <><PageHero title="Услуги пошива" description="От разработки модели и лекал до образца, индивидуального изделия или партии." image="studio" crumbs={[{ label: 'Услуги' }]}><Button onClick={() => onLead()}>Рассчитать стоимость</Button></PageHero>
   <ServiceShowcase onLead={onLead} />
   <FinalCTA onLead={onLead} /></>
 }
@@ -137,14 +137,14 @@ export function WorksPage({ onLead }: { onLead: OpenLead }) {
 export function ProjectPage({ project, onLead }: { project: typeof gallery[number]; onLead: OpenLead }) {
   return <><PageHero title={project.title} description="Демонстрационный пример проекта. Изображения сгенерированы." image={project.image} crumbs={[{ label: 'Наши работы', href: '/works' }, { label: project.title }]}><Button onClick={() => onLead(project.type)}>Рассчитать похожий проект</Button></PageHero>
     <Points title="От задачи к изделию" points={[[ 'Задача', project.task ],[ 'Исходные материалы', project.source ],[ 'Конструкция', project.feature ],[ 'Этапы работы', 'Уточнение параметров, разработка конструкции, подготовка образца и проверка изделия.' ],[ 'Визуализация', project.result ]]} />
-    <section className="section"><div className="container"><SectionHeading title="Детали изделия" /><div className="detail-strip"><Photo name={project.image} /><Photo name="seams" /><Photo name="needle" /></div></div></section>
+    <section className="section"><div className="container"><SectionHeading title="Детали изделия" /><div className="detail-strip"><Photo name="seams" /><Photo name="needle" /></div></div></section>
     <FinalCTA onLead={onLead} type={project.type} label="Рассчитать похожий проект" />
   </>
 }
 
 export function ProductionPage({ onLead }: { onLead: OpenLead }) {
   return <><PageHero title="Швейный цех в Сочи" description="Собственное швейное производство и специалисты с более чем 30-летним профессиональным опытом." image="workshop" crumbs={[{ label: 'О производстве' }]}><Button onClick={() => onLead()}>Обсудить проект</Button></PageHero>
-    <Experience /><Quality />
+    <Experience image="service-design" /><Quality />
     <section className="section"><div className="container"><SectionHeading title="Производство изнутри" /><div className="production-grid">{[['pattern','Конструирование'],['cut','Раскрой'],['hero','Пошив'],['seams','Проверка швов']].map(([name, label]) => <div key={name}><Photo name={name} /><h3>{label}</h3></div>)}</div></div></section>
     <Process /><FinalCTA onLead={onLead} />
   </>

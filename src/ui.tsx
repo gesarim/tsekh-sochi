@@ -121,8 +121,8 @@ export function ContactSection() {
 
 export function FinalCTA({ onLead, type, label = 'Рассчитать стоимость' }: { onLead: OpenLead; type?: number; label?: string }) {
   return <section className="section proposal"><div className="container proposal-grid">
-    <div className="proposal-copy"><h2>Обсудим ваш заказ</h2><p>По эскизу или фотографии подскажем, с чего начать пошив и что понадобится для расчёта.</p><Button onClick={() => onLead(type)}>{label}</Button></div>
-    <Photo name="jacket" />
+    <div className="proposal-copy"><h2>Обсудим ваш заказ</h2><p>Для первого расчёта пришлите фото или эскиз и укажите, сколько изделий нужно.</p><Button onClick={() => onLead(type)}>{label}</Button></div>
+    <Photo name="order-table" />
   </div></section>
 }
 

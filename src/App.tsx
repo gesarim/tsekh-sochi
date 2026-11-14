@@ -8,7 +8,7 @@ import { Footer, Header } from './ui'
 export const paths = ['/', '/services', '/business', '/brands', '/individual', '/works', '/production', '/contacts', '/price', '/privacy', ...services.map(s => '/services/'+s.id), ...gallery.map(p => '/works/'+p.id)]
 
 const info: Record<string, [string, string]> = {
-  '/': ['Швейное производство в Сочи | Пошив одежды на заказ', site.description],
+  '/': ['Производство одежды и индивидуальный пошив в Сочи', site.description],
   '/services': ['Услуги швейного производства в Сочи', 'Разработка моделей, лекала, пошив образцов, контрактное производство одежды, униформа и индивидуальный пошив.'],
   '/brands': [landing.brands.title, landing.brands.description],
   '/business': [landing.business.title, landing.business.description],
@@ -29,7 +29,7 @@ export function metadata(path: string) {
     title: 'ЦЕХЪ — '+item[0],
     description: item[1],
     canonical: site.url+path,
-    image: site.url+'/images/'+(service?.image || project?.image || 'textile')+'.webp',
+    image: site.url+'/images/'+(service?.image || project?.image || 'cover-atelier')+'.webp',
     breadcrumbs: path === '/' ? [] : [{ name: 'Главная', pathname: '/' }, ...(parts.length > 1 ? [{ name: parts[0] === 'services' ? 'Услуги' : 'Наши работы', pathname: '/'+parts[0] }] : []), { name: service?.title || project?.title || item[0], pathname: path }],
   }
 }

@@ -108,7 +108,7 @@ p{max-width:68ch}
 .dark,.final-cta,.footer{background:var(--dark);color:var(--paper)}
 .dark .eyebrow{color:#ddd}
 .dark .advantages p,.final-cta p{color:#bdbdbd}
-.detail-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.detail-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .detail-strip>.photo{aspect-ratio:1.33}
 .advantages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 27px;margin-top:32px}
 .advantages h3{margin:8px 0;font-size:20px}

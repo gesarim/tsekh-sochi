@@ -392,3 +392,11 @@ a.contact-tile:is(:hover, :focus-visible) { box-shadow: 0 0 0 1px var(--ink); }
   border-radius: var(--radius-media);
   background: var(--surface-gray);
 }
+
+.hero .hero-copy h1 { font-size: clamp(38px, 5.3vw, 82px); }
+.hero-photo img { object-position: 61% 45%; }
+.audience-card:last-child .photo img { object-position: center; }
+@media (max-width: 650px) {
+  .hero .hero-copy h1 { font-size: clamp(23px, 7vw, 45px); }
+  .hero-photo img { object-position: 66% 44%; }
+}
