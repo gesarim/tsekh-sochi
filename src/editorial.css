@@ -27,7 +27,7 @@ h3 { font-weight: 620; }
 .tone-soft, .calculation { background: #f1f1f1; }
 .dark .section-heading-row p, .dark .advantages p, .final-cta p { color: #bdbdbd; }
 .footer a:hover { color: #ccc; }
-.footer-bottom, .advantages div { border-color: #484848; }
+.footer-bottom { border-color: #484848; }
 .filters button, .round-icon { border-color: #ccc; }
 .point-list div, .process-step { border-color: #ccc; }
 .lead-panel { background: #fff; border-color: #d4d4d4; }
@@ -236,3 +236,30 @@ h2 { font-size: clamp(29px, 4.35vw, 68px); text-wrap: balance; }
   .quote-dock { animation: quote-enter .24s ease-out both; }
 }
 @keyframes quote-enter { from { opacity: 0; translate: 0 10px; } }
+
+.advantages { list-style: none; padding: 0; margin-bottom: 0; gap: 14px; }
+.advantage-card {
+  padding: clamp(18px, 2.5vw, 34px);
+  background: #2c2c2c;
+  border-radius: 20px;
+}
+.advantage-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: #414141;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.advantages h3 { font-size: clamp(19px, 1.75vw, 26px); text-wrap: balance; }
+.advantages p { font-size: 15px; line-height: 1.5; }
+.dark .advantages p { color: #d2d2d2; }
+@media (max-width: 880px) {
+  .advantages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .advantages { grid-template-columns: 1fr; }
+  .advantage-icon { margin-bottom: 14px; }
+}

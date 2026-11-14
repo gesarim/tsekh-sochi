@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Award, Factory, Layers, Ruler, Settings2, ShieldCheck } from 'lucide-react'
 import { advantages, audiences, gallery, landing, services, sitePath } from './content'
 import { LeadForm } from './lead'
 import { Breadcrumbs, Button, ContactSection, FAQAccordion, FinalCTA, Photo, Portfolio, Process, SectionHeading, ServiceCard, type OpenLead } from './ui'
@@ -23,11 +23,19 @@ function Experience() {
   </div></section>
 }
 
+const qualityIcons = [Award, Factory, Layers, Ruler, Settings2, ShieldCheck]
+
 function Quality() {
   return <section className="section dark"><div className="container">
     <SectionHeading eyebrow="Качество исполнения" title="Точность в деталях" description="Следим за качеством от лекал до последней строчки." />
     <div className="stitch-stage"><Photo name="stitch" className="stitch-photo" /></div>
-    <div className="advantages">{advantages.map(([title, description]) => <div key={title}><h3>{title}</h3><p>{description}</p></div>)}</div>
+    <ul className="advantages" role="list">{advantages.map(([title, description], index) => {
+      const Icon = qualityIcons[index]
+      return <li className="advantage-card" key={title}>
+        <span className="advantage-icon"><Icon size={22} strokeWidth={1.6} aria-hidden="true" /></span>
+        <h3>{title}</h3><p>{description}</p>
+      </li>
+    })}</ul>
   </div></section>
 }
 

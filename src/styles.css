@@ -112,8 +112,6 @@ p{max-width:68ch}
 .detail-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .detail-strip>.photo{aspect-ratio:1.33}
 .advantages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 27px;margin-top:32px}
-.advantages div{border-top:1px solid #555;padding:20px 0}
-.advantages span{color:#ddd;font-size:11px}
 .advantages h3{margin:8px 0;font-size:20px}
 .advantages p{font-size:13px}
 .experience,.contact-section{border-bottom:1px solid var(--line)}
